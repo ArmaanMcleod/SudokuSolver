@@ -237,51 +237,54 @@ def main():
     """
 
     # If a script and a puzzle is not provided
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         print("Two arguements needed, the script and suduko puzzle file")
         sys.exit(1)
 
-    # Read the sudoku puzzle
-    data = read_file(sys.argv[1])
-    
-    # Create the grid from the data
-    grid = create_grid(data)
+    # Solve each puzzle supplied
+    for i in range(1, len(sys.argv)):
 
-    # If the grid is not valid, don't proceed
-    if not valid_grid(grid, PUZZLE_SIZE):
-        print("Invalid puzzle, no solution found\n")
+        # Read the sudoku puzzle
+        data = read_file(sys.argv[i])
+        
+        # Create the grid from the data
+        grid = create_grid(data)
 
-        print("Make sure puzzle is in the form:\n")
-        print("_ 8 _ 4 _ 7 _ 9 _")
-        print("3 _ 4 _ _ _ 8 _ 2")
-        print("_ 6 _ _ _ _ _ 7 _")
-        print("6 _ _ _ _ _ _ _ 1")
-        print("_ _ _ _ _ _ _ _ _")
-        print("8 _ _ _ _ _ _ _ 9")
-        print("_ 1 _ _ _ _ _ 3 _")
-        print("2 _ 5 _ _ _ 1 _ 7")
-        print("_ 3 _ 8 _ 9 _ 5 _\n")
+        # If the grid is not valid, don't proceed
+        if not valid_grid(grid, PUZZLE_SIZE):
+            print("Invalid puzzle %d, no solution found\n" % (i))
 
-        print("Requirements of puzzle file: ")
-        print("1. Unfilled spaces with '_' character")
-        print("2. Filled spaces with numbers 1 - 9")
-        print("3. No repeating number in each row or column")
+            print("Make sure puzzle is in the form:\n")
+            print("_ 8 _ 4 _ 7 _ 9 _")
+            print("3 _ 4 _ _ _ 8 _ 2")
+            print("_ 6 _ _ _ _ _ 7 _")
+            print("6 _ _ _ _ _ _ _ 1")
+            print("_ _ _ _ _ _ _ _ _")
+            print("8 _ _ _ _ _ _ _ 9")
+            print("_ 1 _ _ _ _ _ 3 _")
+            print("2 _ 5 _ _ _ 1 _ 7")
+            print("_ 3 _ 8 _ 9 _ 5 _\n")
 
-        sys.exit(1)
+            print("Requirements of puzzle file: ")
+            print("1. Unfilled spaces with '_' character")
+            print("2. Filled spaces with numbers 1 - 9")
+            print("3. No repeating number in each row or column")
 
-    # Original puzzle here
-    print("#### ORIGINAL PUZZLE ####")
-    print(grid_output(grid, PUZZLE_SIZE, BOX_SIZE))
+            sys.exit(1)
 
-    # Get unsolved coordinates
-    unsolved = get_unsolved(grid)
-    
-    # Solve the puzzle
-    puzzle = solve_puzzle(grid, unsolved, PUZZLE_SIZE)
+        # Original puzzle here
+        print("######## PUZZLE %d #######" % (i))
+        print(grid_output(grid, PUZZLE_SIZE, BOX_SIZE))
 
-    # Solved puzzle here
-    print("##### SOLVED PUZZLE #####")
-    print(grid_output(puzzle, PUZZLE_SIZE, BOX_SIZE))
+        # Get unsolved coordinates
+        unsolved = get_unsolved(grid)
+        
+        # Solve the puzzle
+        puzzle = solve_puzzle(grid, unsolved, PUZZLE_SIZE)
+
+        # Solved puzzle here
+        print("#### SOLVED PUZZLE %d ####" % (i))
+        print(grid_output(puzzle, PUZZLE_SIZE, BOX_SIZE))
 
 if __name__ == '__main__':
     main()
