@@ -207,8 +207,7 @@ def grid_output(grid, n, m):
         output += "| "
 
         # Converts element in the list to a string
-        # Replaces Os with underscores
-        numbers = " ".join(map(str, line)).replace("0", "_")
+        numbers = " ".join(map(str, line))
 
         # Inserts a vertical character every m characters
         numbers = "| ".join(numbers[i:i+m*2] for i in 
@@ -219,6 +218,10 @@ def grid_output(grid, n, m):
     # Border for end of puzzle
     output += "- " * (n + m + 1)
     output += "\n"
+
+    # Replaces 0s with underscores
+    if "0" in output:
+        output = output.replace("0", "_")
 
     return output
 
