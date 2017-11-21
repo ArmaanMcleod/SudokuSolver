@@ -207,7 +207,8 @@ def grid_output(grid, n, m):
         output += "| "
 
         # Converts element in the list to a string
-        numbers = " ".join(map(str, line))
+        # Replaces Os with underscores
+        numbers = " ".join(map(str, line)).replace("0", "_")
 
         # Inserts a vertical character every m characters
         numbers = "| ".join(numbers[i:i+m*2] for i in 
