@@ -21,6 +21,7 @@
 # Some useful libraries
 import csv
 import sys
+import time
 
 # global variables for puzzle properties
 PUZZLE_SIZE = 9
@@ -244,6 +245,9 @@ def main():
     # Solve each puzzle supplied
     for i in range(1, len(sys.argv)):
 
+        # Start timer
+        start_time = time.time()
+
         # Read the sudoku puzzle
         data = read_file(sys.argv[i])
         
@@ -285,6 +289,8 @@ def main():
         # Solved puzzle here
         print("#### SOLVED PUZZLE %d ####" % (i))
         print(grid_output(puzzle, PUZZLE_SIZE, BOX_SIZE))
+
+        print("Time taken: %s seconds \n" % (time.time() - start_time))
 
 if __name__ == '__main__':
     main()
