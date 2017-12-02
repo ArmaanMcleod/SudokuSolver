@@ -19,7 +19,6 @@
 # Where puzzle.txt is your sudoku puzzle that you want to solve
 
 # Some useful libraries
-import csv
 import sys
 import time
 
@@ -41,11 +40,10 @@ def read_file(filename):
 
     data = []
 
-    with open(filename) as csv_data:
-        csv_reader = csv.reader(csv_data)
+    with open(filename) as file:
 
-        for line in csv_reader:
-            data.append(line[0].split())
+        for line in file.readlines():
+            data.append(line.split())
 
     return data
 
