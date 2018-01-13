@@ -8,5 +8,5 @@ the file are marked with a underscore **_** and filled spaces are just numbers.
 
 - cd to directory containing this script
 - make sure that your sudoku puzzle is the form above
-- run script with "python solver.py puzzle.txt"
-- Where puzzle.txt is your sudoku puzzle that you want to solve
+- run script with **python solver.py puzzle.txt**
+- where puzzle.txt is your sudoku puzzle that you want to solve
